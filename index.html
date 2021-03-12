@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WHC Test</title>
+</head>
+<body>
+    <input id="inputField"></input>
+    <button onclick="sendData()">Submit</button>
+    <div id="responseDiv"></div>
+</body>
+</html>
+
+<script>
+    function sendData() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("responseDiv").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "App.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("userinput=" + document.getElementById("inputField").value);
+        document.getElementById("inputField").value = "";
+    }
+</script>
